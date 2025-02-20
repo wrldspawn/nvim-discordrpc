@@ -182,9 +182,6 @@ vim.api.nvim_create_autocmd(
 				file = string.gsub(file, home, "~")
 			end
 
-			DiscordRPC:Print(cwd)
-			DiscordRPC:Print(file)
-
 			local filename = vim.fs.basename(file)
 			local dir = vim.fs.basename(cwd)
 
