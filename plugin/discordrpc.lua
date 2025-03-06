@@ -186,7 +186,7 @@ vim.api.nvim_create_autocmd(
 			local dir = vim.fs.basename(cwd)
 
 			local action, icon, label = unpack(mappings.filetype[filetype] or
-				{ "unknown", "keyboard", filetype or "Unknown" })
+				(filetype and { "language", mappings.default_icons.language, filetype } or { "unknown", "keyboard", "Unknown" }))
 			local filename_mapping = mappings.filename[filename]
 			if action == "language" and filename_mapping then
 				action, icon, label = unpack(filename_mapping)
