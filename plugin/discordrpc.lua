@@ -139,6 +139,7 @@ local ACTION_EVENTS = {
 local FILETYPE_IGNORE = {
 	noice = true,
 	["blink-cmp-menu"] = true,
+	incline = true,
 }
 
 vim.api.nvim_create_autocmd(
