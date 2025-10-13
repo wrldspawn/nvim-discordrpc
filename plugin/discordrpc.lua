@@ -166,14 +166,15 @@ vim.api.nvim_create_autocmd(
 			if filetype == "" then filetype = "text" end
 			if FILETYPE_IGNORE[filetype] then return end
 
-			local cwd = vim.uv.cwd()
+			local cwd = vim.fn.getcwd()
 			cwd = cwd:gsub("\\", "/")
-			local home = vim.uv.os_getenv("HOME") or vim.uv.os_getenv("USERPROFILE")
+			local home = vim.fn.getenv("HOME")
 
 			local file = event.file
 			if not file or file == "" then
 				file = "<buffer>"
 			end
+			file = vim.fn.fnamemodify(file, ":.")
 			file = file:gsub("\\", "/")
 			file = file:gsub(cwd:gsub("%p", "%%%1"), "")
 			if string.match(file, "^/") then file = string.sub(file, 2) end
