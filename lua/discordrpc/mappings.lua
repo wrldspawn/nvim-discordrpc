@@ -176,6 +176,7 @@ M.filetype = {
 	['neo-tree-popup'] = { 'file_browser', M.default_icons.file_browser, 'Neo-Tree' },
 
 	-- Plugin Managers
+	["vim.pack"] = { 'plugin_manager', M.default_icons.plugin_manager, 'vim.pack' },
 	lazy = { 'plugin_manager', M.default_icons.plugin_manager, 'Lazy' },
 	pckr = { 'plugin_manager', M.default_icons.plugin_manager, 'Packer' },
 	packer = { 'plugin_manager', M.default_icons.plugin_manager, 'Packer' },
