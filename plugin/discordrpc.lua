@@ -141,6 +141,7 @@ local FILETYPE_IGNORE = {
 	["blink-cmp-menu"] = true,
 	["blink-cmp-signature"] = true,
 	incline = true,
+	mininotify = true,
 }
 
 vim.api.nvim_create_autocmd(
