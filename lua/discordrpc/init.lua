@@ -149,10 +149,12 @@ function DiscordRPC:Close()
 		nonce = uuid()
 	}))
 	self._ready = false
-	self._RPC:shutdown()
-	if not self._RPC:is_closing() then
-		self._RPC:close()
-		self._RPC = nil
+	if self._RPC then
+		self._RPC:shutdown()
+		if not self._RPC:is_closing() then
+			self._RPC:close()
+			self._RPC = nil
+		end
 	end
 end
 
