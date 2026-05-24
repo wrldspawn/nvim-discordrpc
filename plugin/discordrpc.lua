@@ -9,6 +9,7 @@ vim.api.nvim_create_user_command("RPCConnect", function()
 	end
 
 	DiscordRPC:Print("Connecting...")
+	DiscordRPC.DoNotReconnect = nil
 	DiscordRPC:Init()
 end, {})
 vim.api.nvim_create_user_command("RPCDisconnect", function()
@@ -18,10 +19,12 @@ vim.api.nvim_create_user_command("RPCDisconnect", function()
 	end
 
 	DiscordRPC:Print("Disconnecting...")
+	DiscordRPC.DoNotReconnect = true
 	DiscordRPC:Close()
 end, {})
 vim.api.nvim_create_user_command("RPCReconnect", function()
 	DiscordRPC:Print("Reconnecting...")
+	DiscordRPC.DoNotReconnect = nil
 	DiscordRPC:Close()
 	DiscordRPC:Init()
 end, {})
@@ -43,7 +46,7 @@ vim.api.nvim_create_autocmd({ "VimLeave", "VimSuspend" }, {
 
 DiscordRPC.IdleTimer:stop()
 DiscordRPC.IdleTimer:start(0, 1000, vim.schedule_wrap(function()
-	if not DiscordRPC._RPC then
+	if not DiscordRPC._RPC and not DiscordRPC.DoNotReconnect then
 		local path = DiscordRPC:GetPath()
 		if path then
 			DiscordRPC._idle = false
